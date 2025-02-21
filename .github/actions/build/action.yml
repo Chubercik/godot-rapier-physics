@@ -28,7 +28,7 @@ runs:
     - name: Build
       shell: sh
       run: |
-        cargo build --target=${{ inputs.arch }} --debug --features="${{ inputs.features }}" ${{ inputs.extra_flags}} --no-default-features
+        cargo build --target=${{ inputs.arch }} --features="${{ inputs.features }}" ${{ inputs.extra_flags}} --no-default-features
     - name: Copy to release
       shell: sh
       run: |
