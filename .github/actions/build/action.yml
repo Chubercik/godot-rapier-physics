@@ -28,13 +28,13 @@ runs:
     - name: Build
       shell: sh
       run: |
-        cargo build --target=${{ inputs.arch }} --features="${{ inputs.features }}" ${{ inputs.extra_flags}} --no-default-features
-    - name: Copy to debug
+        RUSTFLAGS=-g cargo build --target=${{ inputs.arch }} --release --features="${{ inputs.features }}" ${{ inputs.extra_flags}} --no-default-features
+    - name: Copy to release
       shell: sh
       run: |
-        mkdir -p target/debug
-        rm -rf target/debug
-        cp -rf target/${{ inputs.arch }}/debug target/debug
+        mkdir -p target/release
+        rm -rf target/release
+        cp -rf target/${{ inputs.arch }}/release target/release
     - name: Build Rapier Macos Universal
       shell: sh
       # we already built for x86_64-apple-darwin for mac, now build arm64
